@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 
-import { TaskType } from 'shared/model';
 import { TaskRow } from 'entities/task';
 import { useGetTasksApiQuery } from 'entities/task';
 import { CompleteButton } from 'features/completeTask';
@@ -13,9 +12,7 @@ import { selectTaskFilter } from 'features/taskFilter/model/taskFilterSlice';
 export const TaskList = () => {
     const { classes } = useStyles();
     const activeFilter = useAppSelector(selectTaskFilter);
-    const { data = [] } = useGetTasksApiQuery();
-
-    const tasks: TaskType[] = Object.values(data);
+    const { data: tasks = [] } = useGetTasksApiQuery();
 
     const [filteredTasks, setFilteredTasks] = useState(tasks);
 
